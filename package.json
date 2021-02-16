@@ -1,0 +1,23 @@
+{
+  "name": "babyfootmanager",
+  "version": "1.0.0",
+  "description": "Technic test of Easilys made by Hugo Boichard.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rednai/BabyFootManager.git"
+  },
+  "author": "Hugo Boichard",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rednai/BabyFootManager/issues"
+  },
+  "homepage": "https://github.com/Rednai/BabyFootManager#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^3.1.1"
+  }
+}
