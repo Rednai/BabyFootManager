@@ -1,5 +1,108 @@
-.delete-button {
-    color: red;
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+fieldset {
+    border-radius: 8px;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+}
+
+legend {
+    color: white;
+    background-color: #3d30e7;
+    border-radius: 8px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
+    width: 135px;
+    height: 40px;
+    vertical-align: middle;
+}
+
+legend p {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin: 8px 0 0 0;
+}
+
+input[type=text] {
+    padding-left: 10px;
+    border-radius: 8px;
+    border-width: 2px;
+    border-color: black;
+    outline: none;
+}
+
+button {
+    color: white;
+    font-weight: bold;
+    background-color: #3d30e7;
+    border-radius: 8px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
+    outline: none;
     cursor: pointer;
     user-select: none;
+}
+
+button:hover {
+    background-color: #5045e6;
+}
+
+.add-game {
+    display: inline-block;
+}
+
+.add-game-textbox {
+    height: 30px;
+    width: 300px;
+    font-size: 15px;
+}
+
+.add-game-button {
+    font-size: 15px;
+    margin-left: 10px;
+    height: 36px;
+    width: 90px;
+}
+
+.games {
+    display: inline-block;
+}
+
+.games-table {
+    display: block;
+    width: 395px;
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing:5px 0;
+}
+
+.games-table tr td:is(:last-child) {
+    padding-left: 80px;
+}
+
+.games-table tr td:nth-child(2) {
+    max-width: 245px;
+    min-width: 245px;
+    word-wrap: break-word;
+}
+
+.finish-game-checkbox {
+    cursor: pointer;
+}
+
+.delete-game-button {
+    color: #c01f1f;
+    cursor: pointer;
+    font-size: 25px;
+    margin: 0;
+}
+
+.delete-game-button:hover {
+    color: #b84545;
 }

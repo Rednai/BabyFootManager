@@ -1,16 +1,31 @@
 <!doctype html>
-<html lang="fr">
-<head>
-  <meta charset="utf-8">
-  <title>BabyFoot Manager</title>
-  <link rel="stylesheet" href="index.css">
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="game.js"></script>
-</head>
-<body onload="requestListOfGames()">
-    <input type="text" id="tbx_game_name" placeholder="Nouvelle partie ...">
-    <button type="button" id="btn_new_game" onclick="requestNewGame()">Ajouter</button>
-    <br>
-    <table id="tbl_games"></table>
-</body>
+  <html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>BabyFoot Manager</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="game.js"></script>
+  </head>
+  <body onload="requestListOfGames()">
+    <section>
+
+      <div class="add-game">
+        <input type="text" id="tbx_game_name" class="add-game-textbox" placeholder="Nouvelle partie ...">
+        <button type="button" id="btn_new_game" class="add-game-button" onclick="requestNewGame()">
+          Ajouter
+        </button>
+      </div>
+      
+      <div class="games">
+        <fieldset>
+          <legend>
+              <p>Les parties</p>
+          </legend>
+          <table id="tbl_games" class="games-table"></table>
+        </fieldset>
+      </div>
+
+    </section>
+  </body>
 </html>

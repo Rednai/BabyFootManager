@@ -96,16 +96,21 @@ function addNewGame(gameInfo) {
     checkbox.type = "checkbox";
     checkbox.checked = gameInfo.finish;
     checkbox.onchange = requestFinishGame;
+    checkbox.classList.add("finish-game-checkbox");
     td1.appendChild(checkbox);
 
     var td2 = document.createElement('td');
     td2.innerText = gameInfo.game_name;
+    if (gameInfo.finish) {
+        td2.style.textDecoration = "line-through";
+        td2.style.color = "grey";
+    }
     
     var td3 = document.createElement('td');
     var p = document.createElement('p');
     p.innerHTML = "&#x2716;";
     p.onclick = requestDeleteGame;
-    p.classList.add("delete-button");
+    p.classList.add("delete-game-button");
     td3.appendChild(p);
 
     tr.appendChild(td1);
@@ -138,7 +143,15 @@ function finishGame(gameInfo) {
         if (tr.getAttribute("game_id") != gameInfo.game_id)
             continue;
         let checkbox = tr.firstChild.firstChild;
+        let td = tr.children[1];
         checkbox.checked = gameInfo.finish;
+        if (gameInfo.finish) {
+            td.style.textDecoration = "line-through";
+            td.style.color = "grey";
+        } else {
+            td.style.textDecoration = "";
+            td.style.color = "black";
+        }
         break;
     }
 }
