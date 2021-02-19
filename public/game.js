@@ -70,7 +70,7 @@ function requestDeleteGame() {
 /*
  * Send a request to the server to finish a game
  */
-function requestFinishGame(event) {
+function requestFinishGame() {
     let tr = this.parentNode.parentNode;
     let game_id = tr.getAttribute("game_id");
 
@@ -104,6 +104,8 @@ function addNewGame(gameInfo) {
     if (gameInfo.finish) {
         td2.style.textDecoration = "line-through";
         td2.style.color = "grey";
+    } else {
+        addToGameCounter(1);
     }
     
     var td3 = document.createElement('td');
@@ -128,6 +130,8 @@ function deleteGame(gameInfo) {
     for (let tr of table.children) {
         if (tr.getAttribute("game_id") != gameInfo.game_id)
             continue;
+        if (!tr.firstChild.firstChild.checked)
+            addToGameCounter(-1);
         table.removeChild(tr);
         break;
     }
@@ -148,12 +152,22 @@ function finishGame(gameInfo) {
         if (gameInfo.finish) {
             td.style.textDecoration = "line-through";
             td.style.color = "grey";
+            addToGameCounter(-1);
         } else {
             td.style.textDecoration = "";
             td.style.color = "black";
+            addToGameCounter(1);
         }
         break;
     }
+}
+
+/*
+ * Add the given variable to the game counter
+ */
+function addToGameCounter(toAdd) {
+    let count = document.getElementById('txt_game_counter');
+    count.innerText = String(parseInt(count.innerText) + toAdd);
 }
 
 // SOCKETS MANAGEMENT

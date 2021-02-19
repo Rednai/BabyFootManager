@@ -75,6 +75,11 @@ button:hover {
     width: 90px;
 }
 
+.games-count {
+    margin-top: 10px;
+    font-size: 20px;
+}
+
 .games {
     margin-top: 10px;
     width: min-content;
@@ -112,4 +117,8 @@ button:hover {
 
 .delete-game-button:hover {
     color: #b84545;
+}
+
+#txt_game_counter {
+    font-weight: bold;
 }
