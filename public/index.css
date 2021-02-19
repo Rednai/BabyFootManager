@@ -2,6 +2,11 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+section {
+    display: flex;
+    flex-direction: column;
+}
+
 fieldset {
     border-radius: 8px;
     border-style: solid;
@@ -71,12 +76,14 @@ button:hover {
 }
 
 .games {
+    margin-top: 10px;
+    width: min-content;
     display: inline-block;
 }
 
 .games-table {
     display: block;
-    width: 395px;
+    width: 390px;
     table-layout: fixed;
     border-collapse: separate;
     border-spacing:5px 0;
