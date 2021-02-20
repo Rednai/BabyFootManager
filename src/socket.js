@@ -3,13 +3,8 @@ let io;
 /*
  * Initiate socket.io module
  */
-module.exports = function(http) {
+module.exports = (http) => {
     const socketIo = require('socket.io')(http);
-
-    socketIo.on('connection', (socket) => {
-        console.log('New user connected');
-    });
-
     io = socketIo;
     return io;
 };

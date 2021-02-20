@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const http = require('http').Server(app);
-require('./socket')(http);
+const io = require('./socket')(http);
 const gameRoutes = require('./routes/gameRoutes');
 
 app.use(bodyParser.json());
@@ -20,3 +20,6 @@ const port = process.env.SERVER_PORT || 8080;
 http.listen(port, () => {
   console.log('Server running and listening on localhost:' + port);
 });
+
+// Export the app for testing
+module.exports = http;

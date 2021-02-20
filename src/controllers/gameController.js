@@ -10,7 +10,7 @@ const getGames = (req, res) => {
         res.status(200).json(results.rows);
     }).catch((error) => {
         res.status(500).send('Database error');
-        throw error;
+        console.error('Database error :\n', error);
     });
 };
 
@@ -38,7 +38,7 @@ const createGame = (req, res) => {
         });
     }).catch((error) => {
         res.status(500).send('Database error');
-        throw error;
+        console.error('Database error :\n', error);
     });
 };
 
@@ -66,7 +66,7 @@ const finishGame = (req, res) => {
         });
     }).catch((error) => {
         res.status(500).send('Database error');
-        throw error;
+        console.error('Database error :\n', error);
     });
 };
 
@@ -91,7 +91,7 @@ const deleteGame = (req, res) => {
         io.emit('delete game', { game_id: results.rows[0].game_id.toString() });
     }).catch((error) => {
         res.status(500).send('Database error');
-        throw error;
+        console.error('Database error :\n', error);
     });
 };
 
