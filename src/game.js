@@ -1,18 +1,16 @@
-const { Pool } = require('pg');
+const db = require('./query');
 const io = require('./socket').getIo();
-
-const pool = new Pool();
 
 /*
  * List all games and return them in json.
  */
 const getGames = (req, res) => {
-    pool.query('SELECT * FROM games ORDER BY created_at ASC', (error, results) => {
-        if (error) {
-            res.status(500).send('Database error');
-            throw error;
-        }
+    db.query('SELECT * FROM games ORDER BY created_at ASC')
+    .then((results) => {
         res.status(200).json(results.rows);
+    }).catch((error) => {
+        res.status(500).send('Database error');
+        throw error;
     });
 };
 
@@ -30,18 +28,17 @@ const createGame = (req, res) => {
         return;
     }
 
-    pool.query('INSERT INTO games (game_name) VALUES ($1) RETURNING game_id', [name],
-    (error, results) => {
-        if (error) {
-            res.status(500).send('Database error');
-            throw error;
-        }
-        res.status(201).send(results.rows[0].game_id.toString());
+    db.query('INSERT INTO games (game_name) VALUES ($1) RETURNING game_id', [name])
+    .then((results) => {
+        res.status(201).send('Game successfully created');
         io.emit('new game', {
             game_name: name,
             game_id: results.rows[0].game_id.toString(),
             finish: false
         });
+    }).catch((error) => {
+        res.status(500).send('Database error');
+        throw error;
     });
 };
 
@@ -56,21 +53,20 @@ const finishGame = (req, res) => {
         return;
     }
 
-    pool.query('UPDATE games SET finish = NOT finish WHERE game_id = $1 RETURNING game_id, finish', [game_id],
-    (error, results) => {
-        if (error) {
-            res.status(500).send('Database error');
-            throw error;
-        }
+    db.query('UPDATE games SET finish = NOT finish WHERE game_id = $1 RETURNING game_id, finish', [game_id])
+    .then((results) => {
         if (!results.rows[0]) {
             res.status(404).send('Couldn\'t find the game');
             return;
         }
-        res.status(200).send(results.rows[0].game_id.toString());
+        res.status(200).send('Game successfully finished or relaunched');
         io.emit('finish game', {
             game_id: results.rows[0].game_id.toString(),
             finish: results.rows[0].finish
         });
+    }).catch((error) => {
+        res.status(500).send('Database error');
+        throw error;
     });
 };
 
@@ -85,18 +81,17 @@ const deleteGame = (req, res) => {
         return;
     }
 
-    pool.query('DELETE FROM games WHERE game_id = $1 RETURNING game_id', [game_id],
-    (error, results) => {
-        if (error) {
-            res.status(500).send('Database error');
-            throw error;
-        }
+    db.query('DELETE FROM games WHERE game_id = $1 RETURNING game_id', [game_id])
+    .then((results) => {
         if (!results.rows[0]) {
             res.status(404).send('Couldn\'t find the game');
             return;
         }
-        res.status(200).send(results.rows[0].game_id.toString());
+        res.status(200).send('Game successfully deleted');
         io.emit('delete game', { game_id: results.rows[0].game_id.toString() });
+    }).catch((error) => {
+        res.status(500).send('Database error');
+        throw error;
     });
 };
 
