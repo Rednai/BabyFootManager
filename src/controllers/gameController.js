@@ -1,5 +1,5 @@
-const db = require('./query');
-const io = require('./socket').getIo();
+const db = require('../query');
+const io = require('../socket').getIo();
 
 /*
  * List all games and return them in json.

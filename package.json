@@ -2,9 +2,9 @@
   "name": "babyfootmanager",
   "version": "1.0.0",
   "description": "Technic test of Easilys made by Hugo Boichard.",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node src/app.js"
   },
   "repository": {
     "type": "git",
